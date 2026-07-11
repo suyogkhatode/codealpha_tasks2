@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Post Details</title>
+</head>
+<body>
+
+<h2>{{ post.user.username }}</h2>
+
+{% if post.image %}
+    <img src="{{ post.image.url }}" width="400">
+{% endif %}
+
+<p>{{ post.caption }}</p>
+
+<hr>
+
+<h3>Comments</h3>
+
+{% for comment in post.comments.all %}
+    <p>
+        <strong>{{ comment.user.username }}</strong> :
+        {{ comment.text }}
+    </p>
+{% empty %}
+    <p>No comments yet.</p>
+{% endfor %}
+
+<form method="POST" action="{% url 'add_comment' post.id %}">
+    {% csrf_token %}
+    <input type="text" name="comment" placeholder="Write a comment">
+    <button type="submit">Post Comment</button>
+</form>
+
+<br>
+
+<a href="{% url 'home' %}">⬅ Back to Home</a>
+
+</body>
+</html>

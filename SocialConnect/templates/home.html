@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialConnect</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+            padding:0;
+        }
+
+        nav{
+            background:#1877f2;
+            padding:15px;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin-right:20px;
+            font-weight:bold;
+        }
+
+        .container{
+            width:700px;
+            margin:30px auto;
+        }
+
+        .post{
+            background:white;
+            border-radius:10px;
+            padding:20px;
+            margin-bottom:30px;
+            box-shadow:0 2px 8px rgba(0,0,0,.1);
+        }
+
+        .user{
+            display:flex;
+            align-items:center;
+            margin-bottom:15px;
+        }
+
+        .user img{
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            object-fit:cover;
+            margin-right:10px;
+        }
+
+        .post-image{
+            width:100%;
+            border-radius:10px;
+            margin-top:10px;
+        }
+
+        .buttons{
+            margin-top:15px;
+        }
+
+        .buttons a{
+            text-decoration:none;
+        }
+
+        .buttons button{
+            padding:8px 15px;
+            margin-right:10px;
+            cursor:pointer;
+            border:none;
+            border-radius:5px;
+            background:#1877f2;
+            color:white;
+        }
+
+        .caption{
+            font-size:17px;
+            margin-top:15px;
+        }
+
+        .count{
+            color:gray;
+            margin-top:8px;
+        }
+
+        h2{
+            text-align:center;
+        }
+    </style>
+
+</head>
+<body>
+
+<nav>
+
+    <a href="{% url 'home' %}">🏠 Home</a>
+
+    <a href="{% url 'create_post' %}">➕ Create Post</a>
+
+    <a href="{% url 'profile' %}">👤 Profile</a>
+
+    <a href="{% url 'logout' %}">🚪 Logout</a>
+
+</nav>
+
+<div class="container">
+
+{% for post in posts %}
+
+<div class="post">
+
+    <div class="user">
+
+        {% if post.user.profile.profile_image %}
+            <img src="{{ post.user.profile.profile_image.url }}">
+        {% else %}
+            <img src="/media/default.png">
+        {% endif %}
+
+        <div>
+            <strong>{{ post.user.username }}</strong><br>
+            <small>{{ post.created_at|date:"M d, Y H:i" }}</small>
+        </div>
+
+    </div>
+
+    {% if post.image %}
+        <img src="{{ post.image.url }}" class="post-image">
+    {% endif %}
+
+    <div class="caption">
+        {{ post.caption }}
+    </div>
+
+    <div class="count">
+        ❤️ {{ post.likes.count }} Likes
+        &nbsp;&nbsp;&nbsp;
+        💬 {{ post.comments.count }} Comments
+    </div>
+
+    <div class="buttons">
+
+        <a href="{% url 'like_post' post.id %}">
+            <button>❤️ Like</button>
+        </a>
+
+        <a href="{% url 'post_detail' post.id %}">
+            <button>💬 Comment</button>
+        </a>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<h2>No posts available.</h2>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

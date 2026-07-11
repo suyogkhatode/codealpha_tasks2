@@ -1,0 +1,93 @@
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f0f2f5;
+}
+
+.navbar{
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#1877f2;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    margin-left:20px;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    color:#1877f2;
+}
+
+.container{
+    width:800px;
+    margin:30px auto;
+}
+
+.post-card{
+    background:white;
+    border-radius:12px;
+    margin-bottom:25px;
+    overflow:hidden;
+    box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+.post-header{
+    display:flex;
+    align-items:center;
+    padding:15px;
+}
+
+.profile-pic{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-right:15px;
+}
+
+.username{
+    font-weight:bold;
+    font-size:18px;
+}
+
+.post-image{
+    width:100%;
+    max-height:500px;
+    object-fit:cover;
+}
+
+.post-body{
+    padding:20px;
+}
+
+.post-actions{
+    display:flex;
+    gap:20px;
+    font-size:18px;
+    margin-top:10px;
+}
+
+button{
+    padding:8px 20px;
+    background:#1877f2;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#145ed8;
+}
